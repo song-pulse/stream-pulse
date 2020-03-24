@@ -2,7 +2,7 @@ import React from "react"
 
 const Upload = () => (
     <>
-      <form method="post" action="http://localhost:8080/simulations">
+      <form method="post" action="https://song-pulse.herokuapp.com/simulations">
         <label htmlFor={"id"}>Participant:</label>
         <input type="text" id="id" name="id"/>
         <label htmlFor={"file"}> Data:</label>

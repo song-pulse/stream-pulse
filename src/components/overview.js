@@ -7,7 +7,7 @@ function Overview() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.get("http://localhost:8080/simulations")
+      axios.get("https://song-pulse.herokuapp.com/simulations")
         .then(function(response) {
           console.log(response.data)
           setRes(response.data);
