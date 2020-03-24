@@ -19,7 +19,7 @@ function Overview() {
   })
 
   return res ? (<>
-    {res.map(sim => <Entry key={sim.id} data={sim}/>)}
+    {res.map(sim => <><Entry key={sim.id} data={sim}/><br/></>)}
     </>) : ""
 }
 
