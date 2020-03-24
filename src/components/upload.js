@@ -2,7 +2,7 @@ import React from "react"
 
 const Upload = () => (
     <>
-      <form method="post" action="https://song-pulse.herokuapp.com/simulations">
+      <form method="post" action={process.env.GATSBY_API_URL+"simulations"}>
         <label htmlFor={"id"}>Participant:</label>
         <input type="text" id="id" name="id"/>
         <label htmlFor={"file"}> Data:</label>

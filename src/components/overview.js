@@ -7,7 +7,7 @@ function Overview() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.get("https://song-pulse.herokuapp.com/simulations")
+      axios.get(process.env.GATSBY_API_URL+"simulations")
         .then(function(response) {
           console.log(response.data)
           setRes(response.data);
