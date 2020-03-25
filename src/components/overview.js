@@ -9,18 +9,18 @@ function Overview() {
     const interval = setInterval(() => {
       axios.get(process.env.GATSBY_API_URL+"simulations")
         .then(function(response) {
-          console.log(response.data)
           setRes(response.data);
         })
-    }, 10000);
+    }, 5000);
     return () => {
       clearInterval(interval);
     };
-  })
+  }, [])
 
+  console.log(res);
   return res ? (<>
-    {res.map(sim => <><Entry key={sim.id} data={sim}/><br/></>)}
-    </>) : ""
+    {res.map(sim => <Entry key={sim.id} data={sim}/>)}
+    </>) : "" //TODO add loading animation
 }
 
 export default Overview

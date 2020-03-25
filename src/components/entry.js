@@ -4,7 +4,7 @@ import axios from "axios"
 function Entry(props) {
   let data = props.data;
   return (
-    <div style={{border:"1px solid black", padding:"1.5em"}}>
+    <div style={{border:"1px solid black", padding:"1.5em", marginTop:"0.5em"}}>
       <button onClick={() => start_stop_simulation(data.id, !data.running)}>{data.running ? "x STOP" : "> RUN"}</button>
       <p style={{display:"inline"}}> {"  "+data.timeRunning}/{data.timeTotal}</p>
       <p style={{display:"inline"}}> {"  "+data.participantId}</p>
