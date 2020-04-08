@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import Entry from "./entry"
+import Participant from "./participant"
 import axios from "axios"
 
 function Overview() {
@@ -7,7 +7,7 @@ function Overview() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.get(process.env.GATSBY_API_URL+"simulations")
+      axios.get(process.env.GATSBY_API_URL+"participants")
         .then(function(response) {
           setRes(response.data);
         })
@@ -19,7 +19,7 @@ function Overview() {
 
   console.log(res);
   return res ? (<>
-    {res.map(sim => <Entry key={sim.id} data={sim}/>)}
+    {res.map(part => <Participant key={part.id} data={part}/>)}
     </>) : "" //TODO add loading animation
 }
 
