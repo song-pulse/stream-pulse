@@ -1,21 +1,25 @@
 import React from "react"
-import Paper from '@material-ui/core/Paper'
-import Recording from "./recording"
+import Bubble from "../bubble"
+import Recording from "../recording/recording"
 import Button from "@material-ui/core/Button"
 import Box from "@material-ui/core/Box"
+import DeleteIcon from '@material-ui/icons/Delete';
 import axios from "axios"
+
 
 const Participant = (props) => {
   let data = props.data;
   return (
-    <Paper style={{border:"1px solid black", padding:"0.5em", marginTop:"0.5em"}}>
+    <Bubble title={data.name}>
       <Box style={{display: "flex", justifyContent: "space-between"}}>
-        <Button>{data.name}</Button>
-        <Button onClick={() => deleteParticipant(data.id)}>Delete</Button>
+        <Box/>
+        <Button onClick={() => deleteParticipant(data.id)} color="secondary" variant="contained" startIcon={<DeleteIcon />}>Delete</Button>
       </Box>
-
       {data.recordings.map(rec => <Recording key={rec.id} data={rec}/>)}
-    </Paper>)
+      <Box style={{marginTop:"0.5em"}}>
+        <Button color="primary" variant="contained">Add Recording</Button>
+      </Box>
+    </Bubble>)
 }
 
 const deleteParticipant = (id) => {

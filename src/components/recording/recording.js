@@ -1,11 +1,11 @@
 import React from "react"
-import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import Grid from "@material-ui/core/Grid"
 import axios from "axios"
 import Typography from "@material-ui/core/Typography"
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
+import Bubble from "../bubble"
 
 
 
@@ -24,7 +24,7 @@ function Recording(props) {
     link = current_result.song.link.split("/").slice(-1).pop().split("?")[0] //this takes the link, gets the last part and removes the added ?
   }
   return (
-    <Paper style={{border:"1px solid black", padding:"1em", marginTop:"0.5em"}}>
+    <Bubble>
       <Grid container spacing={2} direction="row" justify="center" alignItems="center">
         <Grid item xs={3}>
           <Button onClick={() => start_stop_simulation(data.id, !is_running)} variant={"contained"} color={is_running ? "secondary" : "primary"} startIcon={is_running ? <StopIcon/> : <PlayArrowIcon />}>{is_running ? "stop" : "Start"}</Button>
@@ -39,7 +39,7 @@ function Recording(props) {
 
         </Grid>
       </Grid>
-    </Paper>
+    </Bubble>
   )
 }
 
