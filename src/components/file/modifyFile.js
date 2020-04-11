@@ -40,7 +40,7 @@ const ModifyFile = (props) => {
           setFile(e.target.files[0])
         }
       }} />
-      <Button variant="contained" color={"primary"} type="submit" style={{marginLeft:"10px"}}>Upload</Button>
+      <Button variant="contained" color={"primary"} type="submit" style={{marginLeft:"10px"}} disabled={!file}>Upload</Button>
     </form>
   )
 }
