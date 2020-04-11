@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import Bubble from "../bubble"
 import Recording from "../recording/recording"
 import Button from "@material-ui/core/Button"
@@ -10,8 +11,9 @@ import axios from "axios"
 const Participant = (props) => {
   let data = props.data;
   return (
-    <Bubble title={data.name}>
+    <Bubble>
       <Box style={{display: "flex", justifyContent: "space-between"}}>
+        <Link to={"/participants/" + data.id}>{data.name}</Link>
         <Box/>
         <Button onClick={() => deleteParticipant(data.id)} color="secondary" variant="contained" startIcon={<DeleteIcon />}>Delete</Button>
       </Box>

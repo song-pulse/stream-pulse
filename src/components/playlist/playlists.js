@@ -40,7 +40,7 @@ function Playlists(props) {
   console.log(res)
 
   return res ? (
-    <Bubble title={props.name}>
+    <Bubble title={"Playlists"}>
       {createTypeRows(types, res)}
       <br/>
 

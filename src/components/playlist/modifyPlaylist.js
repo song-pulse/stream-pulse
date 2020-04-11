@@ -14,9 +14,16 @@ const ModifyPlaylist = (props) => {
 
   const modifyPlaylist = (event) => {
     event.preventDefault()
-    axios.post(process.env.GATSBY_API_URL+"participants/"+props.part_id+"/playlists", { link: link, type: props.type })
-      .then((response) => {props.refresh()})
-      .catch((error) => {console.log(error)})
+    if (!originalLink) {
+      axios.post(process.env.GATSBY_API_URL+"participants/"+props.part_id+"/playlists", { link: link, type: props.type })
+        .then((response) => {props.refresh()})
+        .catch((error) => {console.log(error)})
+    } else {
+      axios.put(process.env.GATSBY_API_URL+"participants/"+props.part_id+"/playlists", { link: link, type: props.type })
+        .then((response) => {props.refresh()})
+        .catch((error) => {console.log(error)})
+    }
+
   }
 
   return (

@@ -4,7 +4,7 @@ import Playlists from "../playlist/playlists"
 
 
 const ParticipantView = (props) =>
-  <Layout subtitle={"Participant" + props.id}>
+  <Layout subtitle={"Participant " + props.id}>
     <Playlists part_id={props.id}/>
   </Layout>
 
