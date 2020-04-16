@@ -1,10 +1,7 @@
 import React, {useState} from "react"
 import axios from "axios"
-import ListItem from "@material-ui/core/ListItem"
-import ListItemText from "@material-ui/core/ListItemText"
 import Bubble from "../bubble"
 import ModifyPlaylist from "./modifyPlaylist"
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 

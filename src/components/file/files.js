@@ -1,9 +1,10 @@
 import React, {useState} from "react"
 import axios from "axios"
 import Bubble from "../bubble"
-import ModifyFile from "./modifyFile"
 import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
+import { FileButton } from "./addFile"
+import TextField from "@material-ui/core/TextField"
 
 function Files(props) {
   const [sensors, setSensors] = useState([])
@@ -12,8 +13,8 @@ function Files(props) {
   const loadSensors = () => {
     axios.get(process.env.GATSBY_API_URL+"sensors")
       .then(function(response) {
-        isLoaded(true);
         setSensors(response.data);
+        isLoaded(true);
       })
   }
 
@@ -23,7 +24,10 @@ function Files(props) {
       return (
         <Box style={{marginBottom:"10px"}}>
           <Typography variant={"h5"} gutterBottom>{sensor.name}</Typography>
-          <ModifyFile refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id} sensor_id={sensor.id} sensor={sensor.name} name={file ? file.name : ""}/>
+          <Box display={"flex"}>
+            <TextField required label="File" variant="outlined" size={"small"} value={file ? file.name : ""} style={{marginRight:"10px"}} disabled/>
+            <FileButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id} sensor_id={sensor.id} sensor={sensor.name} name={file ? file.name : ""}/>
+          </Box>
         </Box>
       )
     })
@@ -33,7 +37,7 @@ function Files(props) {
     loadSensors();
   }
 
-  return sensors ? (
+  return sensors && loaded ? (
     <Bubble title={"Files"}>
       {createTypeRows(sensors, props.data)}
     </Bubble>) : "" //TODO add loading animation

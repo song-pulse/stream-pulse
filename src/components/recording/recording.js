@@ -7,10 +7,10 @@ function Recording(props) {
   const [loaded, isLoaded] = useState(false)
 
   const load = () => {
-    axios.get(process.env.GATSBY_API_URL+"participants/"+props.part_id+"/recordings/"+props.rec_id)
+    axios.get(process.env.GATSBY_API_URL+"participants/"+props.part_id+"/recordings/"+props.rec_id+"/files")
       .then(function(response) {
-        isLoaded(true);
         setRes(response.data);
+        isLoaded(true);
       })
   }
 
@@ -18,10 +18,8 @@ function Recording(props) {
     load();
   }
 
-  console.log(res)
-
-  return res ? (
-    <Files data={res.files} part_id={props.part_id} rec_id={props.rec_id} refresh={load}/>) : "" //TODO add loading animation
+  return loaded && res ? (
+    <Files data={res} part_id={props.part_id} rec_id={props.rec_id} refresh={load}/>) : "" //TODO add loading animation
 }
 
 

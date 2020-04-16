@@ -7,7 +7,7 @@ const PlaylistDialog = (props) => {
 
   return (
     <Dialog onClose={props.onClose} open={props.open}>
-      <iframe src={"https://open.spotify.com/embed/playlist/"+link} width="300" height="380" frameBorder="0"
+      <iframe title={link} src={"https://open.spotify.com/embed/playlist/"+link} width="300" height="380" frameBorder="0"
               allowTransparency="true" allow="encrypted-media"/>
     </Dialog>
   )
