@@ -7,8 +7,10 @@ import Typography from "@material-ui/core/Typography"
 
 const FileReader = (props) => {
   const [file, setFile] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handleFileLoad = async () => {
+    setLoading(true)
     let fresh_file_id = await props.createFile(file.name)
 
     Papa.parse(file, {
@@ -22,6 +24,7 @@ const FileReader = (props) => {
       },
       complete: () => {
         props.close();
+        setLoading(false)
       },
     })
   }
@@ -29,7 +32,7 @@ const FileReader = (props) => {
   return (
     <Box style={{display:"flex"}}>
       <Button variant="contained" component="label" color="primary">
-        Upload File
+        Choose File
         <input
           type="file"
           style={{ display: "none" }}
@@ -53,7 +56,7 @@ const FileReader = (props) => {
       >
         <Typography>{file ? file.name : ""}</Typography>
       </Paper>
-      <Button variant="contained" color="primary" disabled={!file} onClick={handleFileLoad}>Upload</Button>
+      <Button variant="contained" color="primary" disabled={!file || loading} onClick={handleFileLoad}>Upload</Button>
     </Box>
   )
 }
