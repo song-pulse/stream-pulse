@@ -25,10 +25,12 @@ function Files(props) {
       let file = files.find(file => file.sensor_id === sensor.id)
       return (
         <Box style={{marginBottom:"10px"}}>
-          <Typography variant={"h5"} gutterBottom>{sensor.name}</Typography>
+          <Typography variant={"h5"} gutterBottom>{sensor.name + " @ " + sensor.frequency + "s"}</Typography>
           <Box display={"flex"}>
-            <TextField required label="File" variant="outlined" size={"small"} value={file ? file.name : ""} style={{marginRight:"10px"}} disabled/>
-            <FileButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id} sensor_id={sensor.id} sensor={sensor.name} name={file ? file.name : ""}/>
+            <TextField required label="File" variant="outlined" size={"small"} value={file ? file.name : ""}
+                       style={{ marginRight: "10px" }} disabled/>
+            <FileButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id} sensor_id={sensor.id}
+                        sensor_frequency={sensor.frequency} sensor={sensor.name} name={file ? file.name : ""}/>
             <ValueButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id}
                          file_id={file ? file.id : -1} filename={file ? file.name : ""}/>
             <DeleteButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id}

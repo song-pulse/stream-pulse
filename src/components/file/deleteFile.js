@@ -6,7 +6,7 @@ const DeleteButton = (props) => {
 
   const deleteFile = () => {
     axios.delete(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/files/" + props.file_id)
-      .then(r => props.refresh)
+      .then(r => props.refresh())
       .catch((error) => console.log(error))
   }
 

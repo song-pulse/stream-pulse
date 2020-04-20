@@ -8,16 +8,21 @@ const AddParticipant = (props) => {
 
   const createUser = (event) => {
     event.preventDefault()
-    axios.post(process.env.GATSBY_API_URL+"participants", { name: name })
-      .then((response) => {props.refresh()})
+    axios.post(process.env.GATSBY_API_URL + "participants", { name: name })
+      .then((response) => {
+        props.refresh()
+        setName("")
+      })
       .catch((error) => {console.log(error)})
   }
 
   return (
     <>
       <form onSubmit={createUser}>
-        <TextField required label="New Participant" variant="outlined" size={"small"} onChange={e => setName(e.target.value)} value={name}/>
-        <Button variant="contained" color={"primary"} type="submit" style={{marginLeft:"10px"}} disabled={!name}>Add participant</Button>
+        <TextField required label="New Participant" variant="outlined" size={"small"}
+                   onChange={e => setName(e.target.value)} value={name}/>
+        <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
+                disabled={!name}>Create</Button>
       </form>
     </>
   )

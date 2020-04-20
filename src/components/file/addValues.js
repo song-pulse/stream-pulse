@@ -20,7 +20,7 @@ const AddValues = (props) => {
 
   const createValues = async (data, file_id) => {
     if (file_id && file_id > 0) {
-      await cleanupValues(data, file_id, createValue)
+      await cleanupValues(data, file_id, props.sensor_frequency, createValue)
     } else {
       console.log("error")
     }

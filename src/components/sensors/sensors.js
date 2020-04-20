@@ -4,16 +4,18 @@ import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import Bubble from "../bubble"
 import AddSensor from "./addSensor"
+import DeleteButton from "./deleteSensor"
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 
 function Sensors(props) {
   const [res, setRes] = useState([])
   const [loaded, isLoaded] = useState(false)
 
   const load = () => {
-    axios.get(process.env.GATSBY_API_URL+"sensors")
+    axios.get(process.env.GATSBY_API_URL + "sensors")
       .then(function(response) {
-        setRes(response.data);
-        isLoaded(true);
+        setRes(response.data)
+        isLoaded(true)
       })
   }
 
@@ -24,11 +26,14 @@ function Sensors(props) {
   return res ? (
     <Bubble title={props.name}>
       <ListItem key={"sensor-title"}>
-        <ListItemText primary={"id: name"} />
+        <ListItemText primary={"id: name @ frequency"}/>
       </ListItem>
       {res.map(sens =>
-        <ListItem key={"sensor-"+sens.id}>
-          <ListItemText primary={sens.id + ": " + sens.name} />
+        <ListItem key={"sensor-" + sens.id}>
+          <ListItemText primary={sens.id + ": " + sens.name} secondary={"@ " + sens.frequency + " seconds"}/>
+          <ListItemSecondaryAction>
+            <DeleteButton sensor_id={sens.id} refresh={load}/>
+          </ListItemSecondaryAction>
         </ListItem>)
       }
     <br/>
