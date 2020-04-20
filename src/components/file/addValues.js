@@ -2,6 +2,7 @@ import React from "react"
 import axios from "axios"
 import Box from "@material-ui/core/Box"
 import FileReader from "./fileReader"
+import { cleanupValues } from "./cleanup"
 
 const AddValues = (props) => {
 
@@ -18,24 +19,8 @@ const AddValues = (props) => {
   }
 
   const createValues = async (data, file_id) => {
-
-    if (file_id > 0) {
-      let timestamp = parseInt(data[0])
-      let frequency = parseInt(data[1])
-      let timeWindow = 180
-      let stepWindow = timeWindow*frequency
-
-      let sum = 0
-      for (let win = 2; win < data.length-stepWindow; win = win+stepWindow) {
-        for (let winStart = win; winStart < win+stepWindow; winStart++) {
-          sum = sum + parseFloat(data[winStart])
-        }
-        timestamp = timestamp + timeWindow;
-        let avg = sum/stepWindow
-        let res = await createValue(timestamp, avg, file_id)
-        console.log(res + " " + avg)
-        sum = 0
-      }
+    if (file_id && file_id > 0) {
+      await cleanupValues(data, file_id, createValue)
     } else {
       console.log("error")
     }

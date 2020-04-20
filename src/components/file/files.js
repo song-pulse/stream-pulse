@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography"
 import Box from "@material-ui/core/Box"
 import { FileButton } from "./addFile"
 import TextField from "@material-ui/core/TextField"
+import { ValueButton } from "../values/displayValues"
 
 function Files(props) {
   const [sensors, setSensors] = useState([])
@@ -27,6 +28,7 @@ function Files(props) {
           <Box display={"flex"}>
             <TextField required label="File" variant="outlined" size={"small"} value={file ? file.name : ""} style={{marginRight:"10px"}} disabled/>
             <FileButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id} sensor_id={sensor.id} sensor={sensor.name} name={file ? file.name : ""}/>
+            <ValueButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id} file_id={file ? file.id : -1} filename={file ? file.name : ""}/>
           </Box>
         </Box>
       )
@@ -42,7 +44,5 @@ function Files(props) {
       {createTypeRows(sensors, props.data)}
     </Bubble>) : "" //TODO add loading animation
 }
-
-
 
 export default Files

@@ -15,7 +15,7 @@ const FileReader = (props) => {
 
     Papa.parse(file, {
       chunk: (results, parser) => {
-        if (fresh_file_id === 0) {
+        if (!fresh_file_id || fresh_file_id === 0) {
           console.log("aborted")
           parser.abort();
         } else {
