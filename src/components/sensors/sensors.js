@@ -6,6 +6,7 @@ import Bubble from "../bubble"
 import AddSensor from "./addSensor"
 import DeleteButton from "./deleteSensor"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
+import List from "@material-ui/core/List"
 
 function Sensors(props) {
   const [res, setRes] = useState([])
@@ -25,19 +26,21 @@ function Sensors(props) {
 
   return res ? (
     <Bubble title={props.name}>
-      <ListItem key={"sensor-title"}>
-        <ListItemText primary={"id: name @ frequency"}/>
-      </ListItem>
-      {res.map(sens =>
-        <ListItem key={"sensor-" + sens.id}>
-          <ListItemText primary={sens.id + ": " + sens.name} secondary={"@ " + sens.frequency + " seconds"}/>
-          <ListItemSecondaryAction>
-            <DeleteButton sensor_id={sens.id} refresh={load}/>
-          </ListItemSecondaryAction>
-        </ListItem>)
-      }
-    <br/>
-    <AddSensor refresh={load}/>
+      <List>
+        <ListItem key={"sensor-title"}>
+          <ListItemText primary={"id: name @ frequency"}/>
+        </ListItem>
+        {res.map(sens =>
+          <ListItem key={"sensor-" + sens.id}>
+            <ListItemText primary={sens.id + ": " + sens.name} secondary={"@ " + sens.frequency + " seconds"}/>
+            <ListItemSecondaryAction>
+              <DeleteButton sensor_id={sens.id} refresh={load}/>
+            </ListItemSecondaryAction>
+          </ListItem>)
+        }
+      </List>
+      <br/>
+      <AddSensor refresh={load}/>
     </Bubble>) : "" //TODO add loading animation
 }
 
