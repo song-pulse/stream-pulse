@@ -27,7 +27,7 @@ function RunShort(props) {
             <Grid item xs={3}>{run.is_running ? <PlayArrowIcon/> : "DONE"}</Grid>
             <Grid item xs={3}><Typography>{run.name}</Typography></Grid>
             <Grid item xs={3}>
-              <Link to={"/participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs" + run.id}>Show
+              <Link to={"/participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs/" + run.id}>Show
                 Details</Link>
             </Grid>
             <Grid item xs={3}>
