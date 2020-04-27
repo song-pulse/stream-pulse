@@ -10,8 +10,8 @@ const cleanupSingleColumn = async (data, file_id, timeWindow, createValue) => {
       sum = sum + parseFloat(data[winStart])
     }
     timestamp = timestamp + timeWindow
-    let avg = sum/stepWindow
-    let res = await createValue(timestamp, avg, file_id)
+    let avg = sum / stepWindow
+    let res = await createValue(timestamp, avg, 0, 0, file_id)
     console.log(res + " " + avg)
     sum = 0
   }

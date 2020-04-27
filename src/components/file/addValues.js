@@ -12,9 +12,9 @@ const AddValues = (props) => {
     return res.data.id
   }
 
-  const createValue = async (timestamp, value, file_id) => {
-    let res = await axios.post(process.env.GATSBY_API_URL+"participants/"+props.part_id+"/recordings/"+props.rec_id+"/files/"+file_id+"/values",
-      { timestamp:timestamp, value:value })
+  const createValue = async (timestamp, value1, value2, value3, file_id) => {
+    let res = await axios.post(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/files/" + file_id + "/values",
+      { timestamp: timestamp, value: value1 })
     return res.status
   }
 
