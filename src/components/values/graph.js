@@ -58,12 +58,15 @@ function Graph(props) {
       plotOptions: {
         line: {
           dataLabels: {
-            enabled: false
+            enabled: false,
           },
-          enableMouseTracking: true
-        }
+          enableMouseTracking: true,
+        },
       },
-      series: [{ data: values1 }, { data: values2 }, { data: values3 }],
+      series: [{ name: "x-values", data: values1 }, { name: "y-values", data: values2 }, {
+        name: "z-values",
+        data: values3,
+      }],
     }}
   /> : <Box style={{ width: "500px", height: "400px" }}/>
 }
