@@ -14,7 +14,7 @@ const AddValues = (props) => {
 
   const createValue = async (timestamp, value1, value2, value3, file_id) => {
     let res = await axios.post(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/files/" + file_id + "/values",
-      { timestamp: timestamp, value: value1 })
+      { timestamp: timestamp, value1: value1, value2: value2, value3: value3 })
     return res.status
   }
 
