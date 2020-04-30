@@ -5,7 +5,9 @@ import axios from "axios"
 import Box from "@material-ui/core/Box"
 
 function Graph(props) {
-  const [values, setValues] = useState([])
+  const [values1, setValues1] = useState([])
+  const [values2, setValues2] = useState([])
+  const [values3, setValues3] = useState([])
   const [timestamps, setTimestamps] = useState([])
   const [loaded, isLoaded] = useState(false)
 
@@ -13,28 +15,34 @@ function Graph(props) {
     axios.get(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/files/" + props.file_id + "/values")
       .then(function(response) {
         let t = []
-        let v = []
+        let v1 = []
+        let v2 = []
+        let v3 = []
         response.data.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).forEach(val => {
           t.push(new Date(val.timestamp * 1000).toISOString().substr(11, 8))
-          v.push(val.value1)
+          v1.push(val.value1)
+          v2.push(val.value2)
+          v3.push(val.value3)
         })
-        setValues(v)
-        setTimestamps(t);
-        isLoaded(true);
+        setValues1(v1)
+        setValues2(v2)
+        setValues3(v3)
+        setTimestamps(t)
+        isLoaded(true)
       })
   }
 
   if (!loaded) { //only load once
     loadValues();
   }
-  return values && timestamps && loaded ? <HighchartsReact
+  return values1 && timestamps && loaded ? <HighchartsReact
     highcharts={Highcharts}
     options={{
       chart: {
-        type: 'line'
+        type: "line",
       },
       title: {
-        text: props.filename
+        text: props.filename,
       },
       xAxis: {
         title: {
@@ -55,9 +63,7 @@ function Graph(props) {
           enableMouseTracking: true
         }
       },
-      series: [{
-        data: values
-      }]
+      series: [{ data: values1 }, { data: values2 }, { data: values3 }],
     }}
   /> : <Box style={{ width: "500px", height: "400px" }}/>
 }
