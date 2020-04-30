@@ -16,7 +16,7 @@ function Graph(props) {
         let v = []
         response.data.sort((a, b) => (a.timestamp > b.timestamp) ? 1 : -1).forEach(val => {
           t.push(new Date(val.timestamp * 1000).toISOString().substr(11, 8))
-          v.push(val.value)
+          v.push(val.value1)
         })
         setValues(v)
         setTimestamps(t);
