@@ -48,7 +48,7 @@ function Files(props) {
   return sensors && loaded ? (
     <Bubble title={"Files"}>
       {createTypeRows(sensors, props.data)}
-    </Bubble>) : "" //TODO add loading animation
+    </Bubble>) : <div class="loader"></div>
 }
 
 export default Files

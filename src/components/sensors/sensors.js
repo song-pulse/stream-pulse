@@ -41,7 +41,7 @@ function Sensors(props) {
       </List>
       <br/>
       <AddSensor refresh={load}/>
-    </Bubble>) : "" //TODO add loading animation
+    </Bubble>) : <div class="loader"></div>
 }
 
 export default Sensors

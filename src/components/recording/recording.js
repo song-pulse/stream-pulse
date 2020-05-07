@@ -25,7 +25,7 @@ function Recording(props) {
       <StartButton part_id={props.part_id} rec_id={props.rec_id} refresh={load}/>
       <RunShort data={res.runs} part_id={props.part_id} rec_id={props.rec_id}/>
       <Files data={res.files} part_id={props.part_id} rec_id={props.rec_id} refresh={load}/>
-    </>) : "" //TODO add loading animation
+    </>) : <div class="loader"></div>
 }
 
 export default Recording

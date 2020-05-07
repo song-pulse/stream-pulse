@@ -34,7 +34,7 @@ function Overview() {
       <AddParticipant refresh={load}/>
       <br/>
       {res.map(part => <Participant key={part.id} data={part} refresh={load}/>)}
-    </>) : "" //TODO add loading animation
+    </>) :  <div class="loader"></div>
 }
 
 export default Overview

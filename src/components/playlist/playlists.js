@@ -41,7 +41,7 @@ function Playlists(props) {
       {createTypeRows(types, res)}
       <br/>
 
-    </Bubble>) : "" //TODO add loading animation
+    </Bubble>) : <div class="loader"></div>
 }
 
 

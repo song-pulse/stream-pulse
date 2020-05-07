@@ -24,7 +24,7 @@ function Run(props) {
       <Box>
         {JSON.stringify(res)}
       </Box>
-    </>) : "" //TODO add loading animation
+    </>) : <div class="loader"></div>
 }
 
 export default Run
