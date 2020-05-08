@@ -21,7 +21,15 @@ const cleanupSingleColumn = async (data, file_id, timeWindow, createValue) => {
 const cleanupTwoColumn = async (data, file_id, createValue) => {
   console.log('2 COL DATA')
   console.log(data)
-  // TODO Anja: IBI would be two cols
+  let timestampBegin = parseInt(data[0][0])
+  for(let i=1; i<data.length; i++) {
+    let timeFromStart =parseFloat(data[i][0])
+    let intervalDuration= parseFloat(data[i][1])
+    let timestamp = timestampBegin + timeFromStart
+    let res = await createValue(timestamp, intervalDuration, 0.0, 0.0, file_id)
+    console.log('res', res)
+  }
+  return true;
 }
 
 const cleanupThreeColumn = async (data, file_id, timeWindow, createValue) => {
@@ -111,7 +119,7 @@ export const cleanupValues = async (data, file_id, timeWindow, createValue) => {
   if (data[0].length === 1) {
     return await cleanupSingleColumn(data, file_id, timeWindow, createValue)
   } else if (data[0].length === 2) {
-    return await cleanupTwoColumn(data, file_id, timeWindow, createValue)
+    return await cleanupTwoColumn(data, file_id, createValue)
   } else if (data[0].length === 3) {
     return await cleanupThreeColumn(data, file_id, timeWindow, createValue)
   } else {
