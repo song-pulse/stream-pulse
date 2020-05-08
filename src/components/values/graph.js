@@ -33,8 +33,22 @@ function Graph(props) {
   }
 
   if (!loaded) { //only load once
-    loadValues();
+    loadValues()
   }
+
+  const series = () => {
+    let res = [{ name: "x-values", data: values1 }]
+
+    // if we have no values they are saved as 0.00, so if all values are 0.00 we assume that there are none
+    if (values2.find((v) => v !== 0.00)) {
+      res.push({ name: "y-values", data: values2 })
+    }
+    if (values3.find((v) => v !== 0.00)) {
+      res.push({ name: "z-values", data: values3 })
+    }
+    return res
+  }
+
   return values1 && timestamps && loaded ? <HighchartsReact
     highcharts={Highcharts}
     options={{
@@ -63,10 +77,7 @@ function Graph(props) {
           enableMouseTracking: true,
         },
       },
-      series: [{ name: "x-values", data: values1 }, { name: "y-values", data: values2 }, {
-        name: "z-values",
-        data: values3,
-      }],
+      series: series(),
     }}
   /> : <Box style={{ width: "500px", height: "400px" }}/>
 }
