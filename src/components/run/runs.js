@@ -41,22 +41,19 @@ function Run(props) {
           </ListItemText>
         </ListItem>
         <ListItem key= {"songid"}>
-          <ListItemText primary= {"Song ID: "+ "res.results[1].song_id"}>
+          <ListItemText primary= {"Song ID: "+ res.results[0].song_id}>
           </ListItemText>
         </ListItem>
         <ListItem key= {"songname"}>
-          <ListItemText primary= {"Song Name: "+ "res.results['song']['name']"}>
+          <ListItemText primary= {"Song Name: "+ res.results[0]['song'].name}>
           </ListItemText>
         </ListItem>
         <ListItem key= {"spotifylink"}>
-          <ListItemText primary= {"Spotify: "+ "res.results['song']['link']"}>
+          <ListItemText primary= {"Spotify: "+ res.results[0]['song'].link}>
           </ListItemText>
         </ListItem>
         {/* TODO: here put the spotify integration showplaylist as in participants recording and fix the songname, songid */}
       </List>
-      {/* TODO: this can be removed as soon as songname and songid is fixed */}
-      {JSON.stringify(res)}
-      {/* <PlaylistDialog></PlaylistDialog> */}
     </Bubble>) : <div class="loader"></div>
 }
 
