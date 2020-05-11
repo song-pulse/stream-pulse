@@ -67,6 +67,7 @@ function Graph(props) {
       yAxis: {
         title: {
           text: 'Value'
+          // TODO: make this variable so that there is a more meaningful label
         }
       },
       plotOptions: {
