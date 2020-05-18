@@ -7,8 +7,6 @@ const SettingsPage = () => (
   <Layout subtitle={"Settings"}>
     <h3>Sensors</h3>
     <Sensors/>
-    <h3>Feedback</h3>
-    <SettingsThreshold/>
   </Layout>
 )
 

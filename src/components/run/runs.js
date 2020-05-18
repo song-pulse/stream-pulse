@@ -4,6 +4,7 @@ import Bubble from "../bubble"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
+import SettingsThreshold from "../settings/settingsThreshold"
 
 function Run(props) {
   const [res, setRes] = useState([])
@@ -24,10 +25,6 @@ function Run(props) {
   return loaded && res ? (
     <Bubble title = {"Run " + props.run_id + " Details"}>
       <List>
-        <ListItem key= {"run-time"}>
-          <ListItemText primary= {"Time: "+ new Date(res.current_time * 1000).toISOString().substr(11,8)}>
-          </ListItemText>
-        </ListItem>
         <ListItem key= {"running"}>
           <ListItemText primary= {"Running: "+ res.is_running}>
           </ListItemText>
@@ -52,9 +49,13 @@ function Run(props) {
           <ListItemText primary= {"Spotify: "+ res.results[0]['song'].link}>
           </ListItemText>
         </ListItem>
-        {/* TODO: here put the spotify integration showplaylist as in participants recording and fix the songname, songid */}
       </List>
+      {/* TODO: songid, songname, spotifylink nach unten nehmen zum feedback */}
+      <h3>Feedback</h3>
+      {res.results.map (r => <SettingsThreshold part_id={props.part_id} rec_id= {props.rec_id} run_id= {props.run_id} res= {r}/>)}
     </Bubble>) : <div class="loader"></div>
+
 }
+
 
 export default Run
