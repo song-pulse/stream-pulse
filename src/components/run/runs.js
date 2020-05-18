@@ -4,7 +4,6 @@ import Bubble from "../bubble"
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
-import SettingsThreshold from "../settings/settingsThreshold"
 
 function Run(props) {
   const [res, setRes] = useState([])
@@ -52,7 +51,7 @@ function Run(props) {
       </List>
       {/* TODO: songid, songname, spotifylink nach unten nehmen zum feedback */}
       <h3>Feedback</h3>
-      {res.results.map (r => <SettingsThreshold part_id={props.part_id} rec_id= {props.rec_id} run_id= {props.run_id} res= {r}/>)}
+      {res.results.map (r => <Feedback part_id={props.part_id} rec_id= {props.rec_id} run_id= {props.run_id} res= {r}/>)}
     </Bubble>) : <div class="loader"></div>
 
 }

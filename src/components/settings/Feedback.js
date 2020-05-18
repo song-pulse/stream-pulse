@@ -1,10 +1,9 @@
 import { Button } from "@material-ui/core"
-import TextField from "@material-ui/core/TextField"
 import React, { useState } from "react";
 import axios from "axios"
 import Bubble from "../bubble";
 
-const SettingsThreshold = (props) => {
+const Feedback = (props) => {
     const [feedback, setFeedback]= useState(1) // default verdict is 1
 
     const createFeedback = (event) => {
@@ -26,4 +25,4 @@ const SettingsThreshold = (props) => {
     )
 }
 
-export default SettingsThreshold
+export default Feedback
