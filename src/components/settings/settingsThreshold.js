@@ -10,8 +10,9 @@ const SettingsThreshold = (props) => {
 
     const createFeedback = (event) => {
       event.preventDefault()
-      console.log(res)
-      axios.post(process.env.GATSBY_API_URL + "settings")
+      console.log('res',res)
+      console.log('feedback',feedback)
+      axios.put(process.env.GATSBY_API_URL + "settings")
         .then((response) => {props.refresh()})
         .catch((error) => {console.log(error)})
     }
@@ -22,7 +23,7 @@ const SettingsThreshold = (props) => {
           <TextField required label="Feedback here" variant="outlined" size={"small"}/>
             <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}>Good</Button>
             <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}>Ok</Button>
-            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}>Bad</Button>
+            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={e => setFeedback(e.target.value)}>Bad</Button>
         </form>
       </Bubble>
     )
