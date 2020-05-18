@@ -5,14 +5,12 @@ import axios from "axios"
 import Bubble from "../bubble";
 
 const SettingsThreshold = (props) => {
-    const [res, setRes] = useState("")
-    const [feedback, setFeedback]= useState("")
+    const [feedback, setFeedback]= useState(1) // default verdict is 1
 
     const createFeedback = (event) => {
       event.preventDefault()
-      console.log('res',res)
       console.log('feedback',feedback)
-      axios.put(process.env.GATSBY_API_URL + "settings")
+      axios.put(process.env.GATSBY_API_URL + "settings", { verdict: feedback })
         .then((response) => {props.refresh()})
         .catch((error) => {console.log(error)})
     }
@@ -21,26 +19,12 @@ const SettingsThreshold = (props) => {
       <Bubble title= {props.name}>
         <form onSubmit={createFeedback}>
           <TextField required label="Feedback here" variant="outlined" size={"small"}/>
-            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}>Good</Button>
-            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}>Ok</Button>
-            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={e => setFeedback(e.target.value)}>Bad</Button>
+            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={ () => setFeedback(feedback => 2)}>Good</Button>
+            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={ () => setFeedback(feedback => 1)}>Ok</Button>
+            <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={ () => setFeedback(feedback => 0)}>Bad</Button>
         </form>
       </Bubble>
     )
 }
 
 export default SettingsThreshold
-
-
-// TODO: save the feedback in the db with the post request and a setFeedback here in the buttons
-// axios.post(process.env.GATSBY_API_URL + "sensors", { name: name, frequency: frequency })
-// return (
-    //       <form onSubmit={createSensor}>
-    //         <TextField required label="New Sensor" variant="outlined" size={"small"} onChange={e => setName(e.target.value)}
-    //                    value={name}/>
-    //         <TextField required label="Average Frequency (s)" variant="outlined" size={"small"} type="number"
-    //                    onChange={e => setFrequency(e.target.value)} value={frequency} style={{ marginLeft: "10px" }}/>
-    //         <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
-    //                 disabled={!name || !frequency}>Create</Button>
-    //       </form>
-    //     )
