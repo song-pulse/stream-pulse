@@ -31,6 +31,7 @@ function SettingsThreshold(props) {
     }
 
     const update = (event) => {
+      event.preventDefault()
       axios.put(process.env.GATSBY_API_URL + "settings", {stress_threshold: stress_threshold, acc_threshold: acc_threshold, eda_threshold: eda_threshold,
                 ibi_threshold: ibi_threshold, temp_baseline: temp_baseline, temp_latency: temp_latency, duration: duration })
     }
