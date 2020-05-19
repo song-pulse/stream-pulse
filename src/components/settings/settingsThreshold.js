@@ -1,28 +1,38 @@
 import axios from "axios"
 import Bubble from "../bubble"
 import React, { useState } from "react"
-// import ListItem from "@material-ui/core/ListItem"
-// import ListItemText from "@material-ui/core/ListItemText"
 import TextField from "@material-ui/core/TextField"
 import List from "@material-ui/core/List"
 import Button from "@material-ui/core/Button"
 import { ListItem } from "@material-ui/core"
 
 function SettingsThreshold(props) {
-    const [res, setRes] = useState([])
+    const [stress_threshold, setStressThreshold] = useState(0.0)
+    const [acc_threshold, setAccThreshold] = useState(0.0)
+    const [temp_threshold, setTempThreshold] = useState(0.0)
+    const [eda_threshold, setEDAThreshold] = useState(0.0)
+    const [ibi_threshold, setIbiThreshold] = useState(0.0)
+    const [temp_latency, setTempLatency] = useState(0)
+    const [duration, setDuration] = useState(0)
     const [loaded, isLoaded] = useState(false)
 
     const load = () => {
       axios.get(process.env.GATSBY_API_URL + "/settings")
         .then(function(response) {
-          setRes(response.data)
+         setStressThreshold(response.data[0].stress_threshold)
+         setAccThreshold(response.data[0].acc_threshold)
+         setEDAThreshold(response.data[0].eda_threshold)
+         setTempThreshold(response.data[0].temp_threshold)
+         setIbiThreshold(response.data[0].ibi_threshold)
+         setTempLatency(response.data[0].temp_latency)
+         setDuration(response.data[0].setDuration)
           isLoaded(true)
         })
     }
 
     const update = (event) => {
-      axios.put(process.env.GATSBY_API_URL + "/settings", {stress_threshold: props.stress_threshold, acc_threshold: props.acc_threshold, eda_threshold: props.eda_threshold,
-                ibi_threshold: props.ibi_threshold, temp_baseline: props.temp_baseline, temp_latency: props.temp_latency, duration: props.duration })
+      axios.put(process.env.GATSBY_API_URL + "/settings", {stress_threshold: stress_threshold, acc_threshold: acc_threshold, eda_threshold: eda_threshold,
+                ibi_threshold: ibi_threshold, temp_baseline: temp_baseline, temp_latency: temp_latency, duration: duration })
     }
 
     if (!loaded) { // only load once
@@ -34,74 +44,40 @@ function SettingsThreshold(props) {
         <form onSubmit={update}>
           <List>
             <ListItem>
-              <TextField required label="Stress Threshold" variant="outlined" size={"small"} onChange={() => setRes(props.stress_threshold)}
-                value={props.stress_threshold}/>
+              <TextField required label="Stress Threshold" variant="outlined" size={"small"} onChange={(s) => setStressThreshold(s.target.value)}
+                value={stress_threshold}/>
             </ListItem>
             <ListItem>
-              <TextField required label="Acc Threshold" variant="outlined" size={"small"} onChange={() => setRes(props.acc_threshold)}
-                value={props.acc_threshold}/>
+              <TextField required label="Acc Threshold" variant="outlined" size={"small"} onChange={(s) => setAccThreshold(s.target.value)}
+                value={acc_threshold}/>
             </ListItem>
             <ListItem>
-              <TextField required label="Temp Threshold" variant="outlined" size={"small"} onChange={() => setRes(props.temp_threshold)}
-                value={props.temp_threshold}/>
+              <TextField required label="Temp Threshold" variant="outlined" size={"small"} onChange={(s) => setTempThreshold(s.target.value)}
+                value={temp_threshold}/>
             </ListItem>
             <ListItem>
-              <TextField required label="EDA Threshold" variant="outlined" size={"small"} onChange={() => setRes(props.eda_threshold)}
-                value={props.eda_threshold}/>
+              <TextField required label="EDA Threshold" variant="outlined" size={"small"} onChange={(s) => setEDAThreshold(s.target.value)}
+                value={eda_threshold}/>
             </ListItem>
             <ListItem>
-              <TextField required label="IBI Threshold" variant="outlined" size={"small"} onChange={() => setRes(props.ibi_threshold)}
-                value={props.ibi_threshold}/>
+              <TextField required label="IBI Threshold" variant="outlined" size={"small"} onChange={(s) => setIbiThreshold(s.target.value)}
+                value={ibi_threshold}/>
             </ListItem>
             <ListItem>
-              <TextField required label="Temp Latency" variant="outlined" size={"small"} onChange={() => setRes(props.temp_latency)}
-                value={props.temp_latency}/>
+              <TextField required label="Temp Latency" variant="outlined" size={"small"} onChange={(s) => setTempLatency(s.target.value)}
+                value={temp_latency}/>
             </ListItem>
             <ListItem>
-              <TextField required label="Duration" variant="outlined" size={"small"} onChange={() => setRes(props.duration)}
-                value={props.duration}/>
+              <TextField required label="Duration" variant="outlined" size={"small"} onChange={(s) => setDuration(s.target.value)}
+                value={duration}/>
             </ListItem>
             <ListItem>
-              <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
-                onClick= { () => update()}>Update</Button>
+              <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}>Update</Button>
             </ListItem>
           </List>
         </form>
       </Bubble>
     ): <div class="loader"></div>
-    //TODO update method call when thresholds are written --> see below
-    // return (
-    //     <form onSubmit={createSensor}>
-    //       <TextField required label="New Sensor" variant="outlined" size={"small"} onChange={e => setName(e.target.value)}
-    //                  value={name}/>
-    //       <TextField required label="Average Frequency (s)" variant="outlined" size={"small"} type="number"
-    //                  onChange={e => setFrequency(e.target.value)} value={frequency} style={{ marginLeft: "10px" }}/>
-    //       <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
-    //               disabled={!name || !frequency}>Create</Button>
-    //     </form>
-    //   )
 }
 
 export default SettingsThreshold
-
-
-  
-//     return res ? (
-//       <Bubble title={props.name}>
-//         <List>
-//           <ListItem key={"sensor-title"}>
-//             <ListItemText primary={"id: name @ frequency"}/>
-//           </ListItem>
-//           {res.map(sens =>
-//             <ListItem key={"sensor-" + sens.id}>
-//               <ListItemText primary={sens.id + ": " + sens.name} secondary={"@ " + sens.frequency + " seconds"}/>
-//               <ListItemSecondaryAction>
-//                 <DeleteButton sensor_id={sens.id} refresh={load}/>
-//               </ListItemSecondaryAction>
-//             </ListItem>)
-//           }
-//         </List>
-//         <br/>
-//         <AddSensor refresh={load}/>
-//       </Bubble>) : <div class="loader"></div>
-//   }
