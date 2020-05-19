@@ -9,7 +9,7 @@ import { ListItem } from "@material-ui/core"
 function SettingsThreshold(props) {
     const [stress_threshold, setStressThreshold] = useState(0.0)
     const [acc_threshold, setAccThreshold] = useState(0.0)
-    const [temp_threshold, setTempThreshold] = useState(0.0)
+    const [temp_baseline, setTempBaseline] = useState(0.0)
     const [eda_threshold, setEDAThreshold] = useState(0.0)
     const [ibi_threshold, setIbiThreshold] = useState(0.0)
     const [temp_latency, setTempLatency] = useState(0)
@@ -22,7 +22,7 @@ function SettingsThreshold(props) {
          setStressThreshold(response.data[0].stress_threshold)
          setAccThreshold(response.data[0].acc_threshold)
          setEDAThreshold(response.data[0].eda_threshold)
-         setTempThreshold(response.data[0].temp_threshold)
+         setTempBaseline(response.data[0].temp_baseline)
          setIbiThreshold(response.data[0].ibi_threshold)
          setTempLatency(response.data[0].temp_latency)
          setDuration(response.data[0].setDuration)
@@ -31,7 +31,7 @@ function SettingsThreshold(props) {
     }
 
     const update = (event) => {
-      axios.put(process.env.GATSBY_API_URL + "/settings", {stress_threshold: stress_threshold, acc_threshold: acc_threshold, eda_threshold: eda_threshold,
+      axios.put(process.env.GATSBY_API_URL + "settings", {stress_threshold: stress_threshold, acc_threshold: acc_threshold, eda_threshold: eda_threshold,
                 ibi_threshold: ibi_threshold, temp_baseline: temp_baseline, temp_latency: temp_latency, duration: duration })
     }
 
@@ -39,7 +39,7 @@ function SettingsThreshold(props) {
       load();
     }
 
-    return res ? (
+    return (
       <Bubble title={props.name}>
         <form onSubmit={update}>
           <List>
@@ -52,8 +52,8 @@ function SettingsThreshold(props) {
                 value={acc_threshold}/>
             </ListItem>
             <ListItem>
-              <TextField required label="Temp Threshold" variant="outlined" size={"small"} onChange={(s) => setTempThreshold(s.target.value)}
-                value={temp_threshold}/>
+              <TextField required label="Temp Baseline" variant="outlined" size={"small"} onChange={(s) => setTempBaseline(s.target.value)}
+                value={temp_baseline}/>
             </ListItem>
             <ListItem>
               <TextField required label="EDA Threshold" variant="outlined" size={"small"} onChange={(s) => setEDAThreshold(s.target.value)}
@@ -77,7 +77,7 @@ function SettingsThreshold(props) {
           </List>
         </form>
       </Bubble>
-    ): <div class="loader"></div>
+    )
 }
 
 export default SettingsThreshold
