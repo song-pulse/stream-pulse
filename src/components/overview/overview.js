@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, { useState } from "react"
 import Participant from "../participant/participant"
 import axios from "axios"
 import AddParticipant from "../participant/addParticipant"
@@ -19,16 +19,6 @@ function Overview() {
     load();
   }
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      load();
-    }, 5000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [])
-
-  console.log(res);
   return res ? (
     <>
       <AddParticipant refresh={load}/>

@@ -25,7 +25,7 @@ function Sensors(props) {
   }
 
   return res ? (
-    <Bubble title={props.name}>
+    <Bubble title={"Sensors"}>
       <List>
         <ListItem key={"sensor-title"}>
           <ListItemText primary={"id: name @ frequency"}/>

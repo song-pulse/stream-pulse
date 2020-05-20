@@ -1,7 +1,7 @@
 import { Button } from "@material-ui/core"
-import React, { useState } from "react";
+import React, { useState } from "react"
 import axios from "axios"
-import Bubble from "../bubble";
+import Bubble from "../bubble"
 
 const Feedback = (props) => {
     const [feedback, setFeedback]= useState(1) // default verdict is 1
@@ -15,11 +15,14 @@ const Feedback = (props) => {
     }
 
     return (
-      <Bubble title= {props.name}>
+      <Bubble>
         <form onSubmit={createFeedback}>
-          <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={ () => setFeedback(2)}>Good</Button>
-          <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={ () => setFeedback(1)}>Ok</Button>
-          <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }} onClick={ () => setFeedback(0)}>Bad</Button>
+          <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
+                  onClick={() => setFeedback(2)}>Good</Button>
+          <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
+                  onClick={() => setFeedback(1)}>Ok</Button>
+          <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
+                  onClick={() => setFeedback(0)}>Bad</Button>
         </form>
       </Bubble>
     )

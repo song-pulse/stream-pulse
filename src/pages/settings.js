@@ -5,9 +5,7 @@ import SettingsThreshold from "../components/settings/settingsThreshold"
 
 const SettingsPage = () => (
   <Layout subtitle={"Settings"}>
-    <h3>Sensors</h3>
     <Sensors/>
-    <h3>Settings Threshold</h3>
     <SettingsThreshold/>
   </Layout>
 )

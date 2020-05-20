@@ -6,17 +6,17 @@ import List from "@material-ui/core/List"
 import Button from "@material-ui/core/Button"
 import { ListItem } from "@material-ui/core"
 
-function SettingsThreshold(props) {
-    const [stress_threshold, setStressThreshold] = useState(0.0)
-    const [acc_threshold, setAccThreshold] = useState(0.0)
-    const [temp_baseline, setTempBaseline] = useState(0.0)
-    const [eda_threshold, setEDAThreshold] = useState(0.0)
-    const [ibi_threshold, setIbiThreshold] = useState(0.0)
-    const [temp_latency, setTempLatency] = useState(0)
-    const [duration, setDuration] = useState(0)
-    const [loaded, isLoaded] = useState(false)
+function SettingsThreshold() {
+  const [stress_threshold, setStressThreshold] = useState(0.0)
+  const [acc_threshold, setAccThreshold] = useState(0.0)
+  const [temp_baseline, setTempBaseline] = useState(0.0)
+  const [eda_threshold, setEDAThreshold] = useState(0.0)
+  const [ibi_threshold, setIbiThreshold] = useState(0.0)
+  const [temp_latency, setTempLatency] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [loaded, isLoaded] = useState(false)
 
-    const load = () => {
+  const load = () => {
       axios.get(process.env.GATSBY_API_URL + "settings")
         .then(function(response) {
          console.log('responsedata', response.data)
@@ -42,16 +42,18 @@ function SettingsThreshold(props) {
     }
 
     return (
-      <Bubble title={props.name}>
+      <Bubble title={"Thresholds"}>
         <form onSubmit={update}>
           <List>
             <ListItem>
-              <TextField required label="Stress Threshold" variant="outlined" size={"small"} onChange={(s) => setStressThreshold(s.target.value)}
-                value={stress_threshold}/>
+              <TextField required label="Stress Threshold" variant="outlined" size={"small"}
+                         onChange={(s) => setStressThreshold(s.target.value)}
+                         value={stress_threshold}/>
             </ListItem>
             <ListItem>
-              <TextField required label="Acc Threshold" variant="outlined" size={"small"} onChange={(s) => setAccThreshold(s.target.value)}
-                value={acc_threshold}/>
+              <TextField required label="Acc Threshold" variant="outlined" size={"small"}
+                         onChange={(s) => setAccThreshold(s.target.value)}
+                         value={acc_threshold}/>
             </ListItem>
             <ListItem>
               <TextField required label="Temp Baseline" variant="outlined" size={"small"} onChange={(s) => setTempBaseline(s.target.value)}
