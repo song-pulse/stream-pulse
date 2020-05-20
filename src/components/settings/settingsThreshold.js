@@ -26,7 +26,7 @@ function SettingsThreshold(props) {
          setTempBaseline(response.data.temp_baseline)
          setIbiThreshold(response.data.ibi_threshold)
          setTempLatency(response.data.temp_latency)
-         setDuration(response.data.setDuration)
+         setDuration(response.data.duration)
           isLoaded(true)
         })
     }
