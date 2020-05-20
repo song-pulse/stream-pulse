@@ -17,15 +17,16 @@ function SettingsThreshold(props) {
     const [loaded, isLoaded] = useState(false)
 
     const load = () => {
-      axios.get(process.env.GATSBY_API_URL + "/settings")
+      axios.get(process.env.GATSBY_API_URL + "settings")
         .then(function(response) {
-         setStressThreshold(response.data[0].stress_threshold)
-         setAccThreshold(response.data[0].acc_threshold)
-         setEDAThreshold(response.data[0].eda_threshold)
-         setTempBaseline(response.data[0].temp_baseline)
-         setIbiThreshold(response.data[0].ibi_threshold)
-         setTempLatency(response.data[0].temp_latency)
-         setDuration(response.data[0].setDuration)
+         console.log('responsedata', response.data)
+         setStressThreshold(response.data.stress_threshold)
+         setAccThreshold(response.data.acc_threshold)
+         setEDAThreshold(response.data.eda_threshold)
+         setTempBaseline(response.data.temp_baseline)
+         setIbiThreshold(response.data.ibi_threshold)
+         setTempLatency(response.data.temp_latency)
+         setDuration(response.data.setDuration)
           isLoaded(true)
         })
     }
