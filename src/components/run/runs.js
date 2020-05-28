@@ -14,6 +14,7 @@ function Run(props) {
     axios.get(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs/" + props.run_id)
       .then(function(response) {
         setRes(response.data)
+        console.log(response.data)
         isLoaded(true)
       })
   }
@@ -36,18 +37,6 @@ function Run(props) {
           </ListItem>
           <ListItem key={"recordingid"}>
             <ListItemText primary={"Recording ID: " + res.recording_id}>
-            </ListItemText>
-          </ListItem>
-          <ListItem key={"songid"}>
-            <ListItemText primary={"Song ID: " + res.results[0].song_id}>
-            </ListItemText>
-          </ListItem>
-          <ListItem key={"songname"}>
-            <ListItemText primary={"Song Name: " + res.results[0]["song"].name}>
-            </ListItemText>
-          </ListItem>
-          <ListItem key={"spotifylink"}>
-            <ListItemText primary={"Spotify: " + res.results[0]["song"].link}>
             </ListItemText>
           </ListItem>
         </List>
