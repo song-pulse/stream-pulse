@@ -14,7 +14,8 @@ function Run(props) {
     axios.get(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs/" + props.run_id)
       .then(function(response) {
         setRes(response.data)
-        console.log(response.data)
+        console.log('requesturl',process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs/" + props.run_id)
+        console.log('responsedata', response.data)
         isLoaded(true)
       })
   }
