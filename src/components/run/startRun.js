@@ -8,7 +8,7 @@ const StartButton = (props) => {
     axios.post(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs", {
       current_time: 0,
       is_running: true,
-    })
+    }, { withCredentials: true })
       .then(r => props.refresh())
       .catch((error) => console.log(error))
   }
