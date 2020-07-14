@@ -16,7 +16,7 @@ const Feedback = (props) => {
 
     return (
       <Line>
-        <div>Song ID: {props.res.song_id} Timestamp: {props.res.timestamp} Song name: {props.res.song.name}</div>
+        <div>Song ID: {props.res.song_id} Timestamp: {props.res.timestamp} Song name: {props.res.song.name} Queued: {props.res.song_queued} Playlist: {props.res.action}</div>
         <form onSubmit={createFeedback}>
           <Button variant="contained" color={"primary"} type="submit" style={{ marginLeft: "10px" }}
                   onClick={() => setFeedback(2)}>Good</Button>

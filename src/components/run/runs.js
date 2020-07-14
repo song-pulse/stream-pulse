@@ -46,7 +46,7 @@ function Run(props) {
         {/* TODO: songid, songname, spotifylink nach unten nehmen zum feedback */}
         {res.results.map(r => <Feedback part_id={props.part_id} rec_id={props.rec_id} run_id={props.run_id} res={r}
                                         refresh={load}/>)}
-      </Bubble>
+      </Bubble>      
     </>) : <div class="loader"></div>
 
 }
