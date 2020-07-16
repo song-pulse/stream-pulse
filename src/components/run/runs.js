@@ -5,10 +5,12 @@ import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import Feedback from "../feedback/Feedback"
+import Button from "@material-ui/core/Button"
 
 function Run(props) {
   const [res, setRes] = useState([])
   const [loaded, isLoaded] = useState(false)
+  const [filter, isFilter] = useState(false)
 
   const load = () => {
     axios.get(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs/" + props.run_id)
@@ -43,10 +45,13 @@ function Run(props) {
         </List>
       </Bubble>
       <Bubble title={"Results"}>
-        {/* TODO: songid, songname, spotifylink nach unten nehmen zum feedback */}
-        {res.results.map(r => <Feedback part_id={props.part_id} rec_id={props.rec_id} run_id={props.run_id} res={r}
-                                        refresh={load}/>)}
-      </Bubble>      
+        <Button variant="contained" color={"primary"} style={{ marginLeft: "10px" }} onClick={() => isFilter(!filter)}>
+          {filter ? "Show all" : "Show queued only"}
+        </Button>
+        {res.results.map(r => !filter || r.song_queued ?
+          <Feedback part_id={props.part_id} rec_id={props.rec_id} run_id={props.run_id} res={r}
+                    refresh={load}/> : null)}
+      </Bubble>
     </>) : <div class="loader"></div>
 
 }
