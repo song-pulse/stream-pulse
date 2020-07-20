@@ -10,7 +10,7 @@ import Button from "@material-ui/core/Button"
 function Run(props) {
   const [res, setRes] = useState([])
   const [loaded, isLoaded] = useState(false)
-  const [filter, isFilter] = useState(false)
+  const [filter, isFilter] = useState(true)
 
   const load = () => {
     axios.get(process.env.GATSBY_API_URL + "participants/" + props.part_id + "/recordings/" + props.rec_id + "/runs/" + props.run_id)
