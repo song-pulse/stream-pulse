@@ -22,9 +22,9 @@ function Recording(props) {
 
   return loaded && res ? (
     <>
-      <StartButton part_id={props.part_id} rec_id={props.rec_id} refresh={load}/>
-      <RunShort data={res.runs} part_id={props.part_id} rec_id={props.rec_id}/>
-      <Files data={res.files} part_id={props.part_id} rec_id={props.rec_id} refresh={load}/>
+      <StartButton {...props} refresh={load}/>
+      <RunShort {...props} data={res.runs}/>
+      <Files {...props} data={res.files} refresh={load} runs={res.runs}/>
     </>) : <div class="loader"></div>
 }
 

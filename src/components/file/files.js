@@ -11,12 +11,14 @@ import DeleteButton from "./deleteFile"
 function Files(props) {
   const [sensors, setSensors] = useState([])
   const [loaded, isLoaded] = useState(false)
+  let latestRun = props.runs.slice(-1).pop()
+  let results = latestRun ? latestRun.results : []
 
   const loadSensors = () => {
-    axios.get(process.env.GATSBY_API_URL+"sensors")
+    axios.get(process.env.GATSBY_API_URL + "sensors")
       .then(function(response) {
-        setSensors(response.data);
-        isLoaded(true);
+        setSensors(response.data)
+        isLoaded(true)
       })
   }
 
@@ -29,12 +31,10 @@ function Files(props) {
           <Box display={"flex"}>
             <TextField required label="File" variant="outlined" size={"small"} value={file ? file.name : ""}
                        style={{ marginRight: "10px" }} disabled/>
-            <FileButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id} sensor_id={sensor.id}
-                        sensor_frequency={sensor.frequency} sensor={sensor.name} name={file ? file.name : ""}/>
-            <ValueButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id}
-                         file_id={file ? file.id : -1} filename={file ? file.name : ""}/>
-            <DeleteButton refresh={props.refresh} part_id={props.part_id} rec_id={props.rec_id}
-                          file_id={file ? file.id : -1} filename={file ? file.name : ""}/>
+            <FileButton {...props} sensor_id={sensor.id} sensor_frequency={sensor.frequency} sensor={sensor.name}
+                        name={file ? file.name : ""}/>
+            <ValueButton {...props} file_id={file ? file.id : -1} filename={file ? file.name : ""} results={results}/>
+            <DeleteButton {...props} file_id={file ? file.id : -1} filename={file ? file.name : ""}/>
           </Box>
         </Box>
       )
