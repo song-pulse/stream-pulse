@@ -11,7 +11,7 @@ This application is a simple Web application where E4 data, participants, record
 This application is also available as a Docker image on Docker Hub and is used in the deployment of the Song-Pulse backend. 
 
 ##Functionality
-- display graphs over a certain time of all the E4 values (EDA, IBI, TEMP and ACC) of a user
-- display users with Details and runs (where they connected the E4 device)
-- set and modify playlists of a user
+- Display graphs over a certain time of all the E4 values (EDA, IBI, TEMP and ACC) of a user
+- Display users with Details and runs (where they connected the E4 device)
+- Set and modify playlists of a user
 - Rerun recorded data (deprecated)
